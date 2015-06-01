@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-public class Kira {
+public class Start {
 	static Conn cn = new Conn();
 
 	public static void main(String[] args) {
@@ -15,6 +16,12 @@ public class Kira {
 
 		try {
 			int temps = 0, prix = 0, frequence = 0, nbConnexion = 0, classe,id_client=0,quantite=0;
+			int nbre_prod=0;int duree_minute=0;
+			float montant =0;
+			float montant_finale =0;
+			
+			
+			
 			char reponse = ' ',  mode =' ',reponsee=' ';
 			String k = null;
 
@@ -24,6 +31,7 @@ public class Kira {
 			// liste des produits à acheter
 			Produit p = new Produit();
 			List<Produit> lp = p.getListProduit();
+			Map<Integer, Produit> mp = p.getListProduitMap();
 			
 			String pseudo;
 			System.out.println("\tBonjour ! ");
@@ -51,6 +59,8 @@ public class Kira {
 				System.out.println(" Bienvenue ! vous êtes Mr " + pseudo
 						+ " et vous avez " + nbConnexion
 						+ " connexion à l'application");
+				Chrono ch = new Chrono();
+
 				do {
 					if (nbConnexion >= 30) {
 
@@ -230,12 +240,20 @@ public class Kira {
 							do{//tant que reponse n'est pas O ou N
 						        mode = ' ';
 						        int lenght=lp.size();
+						        int lenght_map=mp.size();
 						        System.out.println("\t ************la liste des produit**********");
+						        
+						        for(int i = 0 ; i<lenght_map;i++)
+								{
+									System.out.println("  * "+(i+1)+" :"+mp.get(i).designation+"\t prix :"+mp.get(i).prix+" €");
+									
+								}
+						        /*
 								for(int i = 0 ; i<lenght;i++)
 								{
 									System.out.println("  * "+(i+1)+" :"+lp.get(i).designation+"\t prix :"+lp.get(i).prix+" €");
 									
-								}
+								}  */
 								
 								
 						        System.out.println("Choisissez le produit que vous voullez  : ");
@@ -268,6 +286,7 @@ public class Kira {
 								reponsee = sc.next().charAt(0);
 
 							} while (reponsee != 'O' && reponsee != 'N');
+							nbre_prod++;
 						} while (reponsee == 'O'); }
 
 							
@@ -291,6 +310,8 @@ public class Kira {
 
 					} while (reponse != 'O' && reponse != 'N');
 				} while (reponse == 'O');
+				
+				duree_minute=ch.minute;
 
 			} else
 
