@@ -42,8 +42,8 @@ public class Produit {
 
 		mp.put(1, p1);
 		mp.put(2, p2);
-		mp.put(3, p1);
-		mp.put(4, p2);
+		mp.put(3, p4);
+		mp.put(4, p5);
 
 		return mp;
 	}

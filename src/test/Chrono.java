@@ -135,7 +135,9 @@ public class Chrono
 		fenetre.pack();
 		fenetre.setLocation(350,200);  /* Déplacer la fenetre à ce nouvel emplacement */
 		fenetre.setSize(300,100);   /* dimension de la fenetre */
-		fenetre.show();
+		fenetre.hide();
+		fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetre.setDefaultLookAndFeelDecorated(true);
 	}
 	
 	
